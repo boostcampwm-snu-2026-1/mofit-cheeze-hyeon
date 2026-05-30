@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.turbo/
+.env
+*.env.local
+
+# Capacitor
+packages/client/android/
+packages/client/ios/
+
+# Editor
+.DS_Store
+*.log
