@@ -2,16 +2,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { PageLayout, Input, Badge, Card, Avatar, BottomNav, Caption } from "@ui";
 
-const CATEGORIES = ["전체", "패션", "드레스", "캐주얼", "스트리트", "포멀"] as const;
+const CATEGORIES = ["전체", "커트", "펌", "염색", "탈색", "스타일링"] as const;
 type Category = (typeof CATEGORIES)[number];
 
 const DESIGNERS = [
-  { id: "1", name: "김소연", specialty: "미니멀 패션", location: "서울", matchCount: 24, tags: ["패션", "드레스"] },
-  { id: "2", name: "이미래", specialty: "스트리트 스타일", location: "부산", matchCount: 18, tags: ["스트리트"] },
-  { id: "3", name: "박지현", specialty: "포멀 & 오피스", location: "서울", matchCount: 31, tags: ["포멀", "패션"] },
-  { id: "4", name: "최다은", specialty: "캐주얼 데일리", location: "인천", matchCount: 12, tags: ["캐주얼"] },
-  { id: "5", name: "정하늘", specialty: "드라마틱 드레스", location: "서울", matchCount: 27, tags: ["드레스"] },
-  { id: "6", name: "한서윤", specialty: "에디토리얼", location: "대구", matchCount: 9, tags: ["패션"] },
+  { id: "1", name: "김소연", specialty: "내추럴 커트", location: "서울 강남", matchCount: 24, tags: ["커트", "스타일링"] },
+  { id: "2", name: "이미래", specialty: "웨이브 · 볼륨 펌", location: "부산 해운대", matchCount: 18, tags: ["펌"] },
+  { id: "3", name: "박지현", specialty: "염색 · 탈색", location: "서울 홍대", matchCount: 31, tags: ["염색", "탈색"] },
+  { id: "4", name: "최다은", specialty: "데일리 스타일링", location: "인천 송도", matchCount: 12, tags: ["스타일링"] },
+  { id: "5", name: "정하늘", specialty: "롱헤어 펌", location: "서울 성수", matchCount: 27, tags: ["펌"] },
+  { id: "6", name: "한서윤", specialty: "톤다운 염색", location: "대구 중구", matchCount: 9, tags: ["염색"] },
 ];
 
 export function DiscoverPage() {
@@ -39,7 +39,7 @@ export function DiscoverPage() {
     >
       <div className="max-w-[430px] mx-auto px-5 pt-4 pb-6">
         <Input
-          placeholder="디자이너 이름, 스타일 검색"
+          placeholder="디자이너 이름, 시술 분야 검색"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="mb-4"

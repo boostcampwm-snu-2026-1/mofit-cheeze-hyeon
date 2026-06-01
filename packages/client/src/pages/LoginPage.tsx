@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { PageLayout, Input, Button, Body, Caption } from "@ui";
+import { PageLayout, Input, Button, Caption } from "@ui";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ export function LoginPage() {
           <p className="font-sans font-semibold text-[1.75rem] leading-tight tracking-[-0.6px] text-charcoal">
             모핏
           </p>
-          <p className="font-sans text-muted text-base mt-1">패션과 모델의 연결고리</p>
+          <p className="font-sans text-muted text-base mt-1">헤어 모델과 디자이너를 연결합니다</p>
         </div>
 
         <div className="flex flex-col gap-4">

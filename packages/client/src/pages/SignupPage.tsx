@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { PageLayout, Input, Button, Badge, Caption, Divider } from "@ui";
+import { PageLayout, Input, Button, Caption, Divider } from "@ui";
 
 type Role = "model" | "designer";
 
@@ -66,7 +66,7 @@ export function SignupPage() {
                   : "border-border text-muted hover:border-border-interactive hover:text-charcoal",
               ].join(" ")}
             >
-              {r === "model" ? "모델" : "디자이너"}
+              {r === "model" ? "헤어 모델" : "헤어 디자이너"}
             </button>
           ))}
         </div>

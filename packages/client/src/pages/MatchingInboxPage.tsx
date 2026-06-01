@@ -4,9 +4,9 @@ import { PageLayout, Avatar, Badge, BottomNav, EmptyState, Button, Divider, Capt
 type MatchStatus = "대기중" | "수락됨" | "거절됨";
 
 const REQUESTS = [
-  { id: "1", name: "박지현", specialty: "포멀 & 오피스", time: "방금 전", status: "대기중" as MatchStatus },
-  { id: "2", name: "이미래", specialty: "스트리트 스타일", time: "2시간 전", status: "수락됨" as MatchStatus },
-  { id: "3", name: "최다은", specialty: "캐주얼 데일리", time: "어제", status: "거절됨" as MatchStatus },
+  { id: "1", name: "박지현", specialty: "염색 · 탈색", time: "방금 전", status: "대기중" as MatchStatus },
+  { id: "2", name: "이미래", specialty: "웨이브 · 볼륨 펌", time: "2시간 전", status: "수락됨" as MatchStatus },
+  { id: "3", name: "최다은", specialty: "데일리 스타일링", time: "어제", status: "거절됨" as MatchStatus },
 ];
 
 const statusVariant: Record<MatchStatus, "default" | "muted" | "outline"> = {

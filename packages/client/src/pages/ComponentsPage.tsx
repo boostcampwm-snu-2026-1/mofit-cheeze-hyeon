@@ -1,13 +1,10 @@
-import { useState, useEffect, ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
   Card, CardHeader, CardBody, CardFooter,
   Input,
   Badge,
-  Avatar,
-  EmptyState,
-  Divider,
   Display, Heading, SubHeading, CardTitle, BodyLarge, Body, Caption,
 } from "@ui";
 
@@ -217,7 +214,7 @@ const COMPONENTS: ComponentDef[] = [
     stories: [
       { name: "Default", description: "Dark filled, high emphasis", node: <Badge variant="default">Featured</Badge> },
       { name: "Muted", description: "Subtle tint, status", node: <Badge variant="muted">Pending</Badge> },
-      { name: "Outline", description: "Bordered, tag/category", node: <Badge variant="outline">Fashion</Badge> },
+      { name: "Outline", description: "Bordered, tag/category", node: <Badge variant="outline">염색</Badge> },
       {
         name: "Mixed group",
         node: <div className="flex gap-2 flex-wrap"><Badge>New</Badge><Badge variant="muted">Draft</Badge><Badge variant="outline">Design</Badge></div>,

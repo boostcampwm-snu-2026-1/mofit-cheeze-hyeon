@@ -3,13 +3,13 @@ import { PageLayout, Avatar, Button, Badge, Divider, Body, Caption } from "@ui";
 
 const MOCK_DESIGNER = {
   name: "김소연",
-  specialty: "미니멀 패션 디자이너",
-  location: "서울",
+  specialty: "내추럴 커트 · 헤어 디자이너",
+  location: "서울 강남",
   matchCount: 24,
   rating: 4.9,
-  bio: "5년 경력의 패션 디자이너입니다. 미니멀하고 클린한 실루엣을 추구하며, 착용자의 개성을 살린 스타일링을 지향합니다. 브랜드 룩북, 화보, 일상 스타일링 모두 작업 가능합니다.",
-  tags: ["미니멀", "클린컷", "드레스", "패션"],
-  works: ["룩북 촬영 30+", "화보 협업 12+", "개인 스타일링 80+"],
+  bio: "3년차 헤어 디자이너입니다. 얼굴형에 맞는 레이어드 커트와 자연스러운 스타일링을 전문으로 합니다. 포트폴리오 촬영용 모델 모집 중이며, 콘텐츠 활용에 동의해 주시는 분을 우선 매칭합니다.",
+  tags: ["커트", "레이어드", "내추럴", "스타일링"],
+  works: ["포트폴리오 촬영 30+", "시술 모델 협업 12+", "일반 커트 80+"],
 };
 
 export function DesignerDetailPage() {

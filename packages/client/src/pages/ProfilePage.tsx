@@ -2,15 +2,15 @@ import { PageLayout, Avatar, Button, Badge, Divider, BottomNav, Body, Caption } 
 
 const MOCK_USER = {
   name: "홍길동",
-  role: "모델",
-  location: "서울",
-  bio: "패션과 예술의 경계에서 활동하는 모델입니다. 미니멀하고 아방가르드한 스타일을 추구합니다.",
+  role: "헤어 모델",
+  location: "서울 마포",
+  bio: "염색·펌 시술 모델로 활동 중입니다. 자연스러운 톤과 레이어드 스타일을 선호하며, 포트폴리오 촬영에도 참여 가능해요.",
   stats: [
     { label: "매칭", value: "8" },
     { label: "완료", value: "5" },
     { label: "평점", value: "4.8" },
   ],
-  tags: ["미니멀", "아방가르드", "캐주얼"],
+  tags: ["내추럴", "웨이브", "레이어드"],
 };
 
 export function ProfilePage() {

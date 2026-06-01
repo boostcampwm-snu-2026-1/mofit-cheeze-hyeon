@@ -4,20 +4,20 @@ const SCHEDULE = [
   {
     date: "오늘, 6월 1일",
     items: [
-      { id: "1", time: "14:00", name: "김소연", desc: "피팅 세션 — 미니멀 룩 3벌", status: "확정" },
-      { id: "2", time: "17:30", name: "정하늘", desc: "스타일링 컨설팅", status: "확정" },
+      { id: "1", time: "14:00", name: "김소연", desc: "레이어드 커트 시술", status: "확정" },
+      { id: "2", time: "17:30", name: "정하늘", desc: "볼륨 펌 상담 · 예약", status: "확정" },
     ],
   },
   {
     date: "6월 5일 목요일",
     items: [
-      { id: "3", time: "10:00", name: "이미래", desc: "스트리트 룩북 촬영", status: "대기중" },
+      { id: "3", time: "10:00", name: "이미래", desc: "웨이브 펌 (포트폴리오 촬영)", status: "대기중" },
     ],
   },
   {
     date: "6월 12일 목요일",
     items: [
-      { id: "4", time: "13:00", name: "박지현", desc: "오피스 룩 피팅", status: "확정" },
+      { id: "4", time: "13:00", name: "박지현", desc: "애쉬 브라운 염색", status: "확정" },
     ],
   },
 ];

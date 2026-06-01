@@ -338,7 +338,7 @@ export function DesignSystemPage() {
                 </CardHeader>
                 <CardBody>
                   <Body className="text-muted">
-                    Five years of experience in sustainable fashion, specialising in draping and construction.
+                    3년차 헤어 디자이너. 내추럴 커트와 레이어드 스타일링을 전문으로 합니다.
                   </Body>
                 </CardBody>
                 <CardFooter>
@@ -430,11 +430,11 @@ export function DesignSystemPage() {
             <div className="flex flex-wrap gap-2 items-center">
               <Badge variant="default">New</Badge>
               <Badge variant="muted">Pending</Badge>
-              <Badge variant="outline">Fashion</Badge>
+              <Badge variant="outline">염색</Badge>
               <Badge variant="muted">Active</Badge>
               <Badge variant="default">Featured</Badge>
-              <Badge variant="outline">Sustainable</Badge>
-              <Badge variant="muted">Draping</Badge>
+              <Badge variant="outline">펌</Badge>
+              <Badge variant="muted">커트</Badge>
             </div>
             <div className="grid grid-cols-3 gap-4 max-w-md">
               <Token label="Default bg" value="#1c1c1c" />

@@ -12,8 +12,8 @@ type Message = {
 const INITIAL_MESSAGES: Message[] = [
   { id: 1, sender: "other", content: "안녕하세요! 매칭 요청 감사해요 😊", time: "14:30" },
   { id: 2, sender: "me", content: "네, 포트폴리오 보고 연락드렸어요!", time: "14:31" },
-  { id: 3, sender: "other", content: "어떤 스타일을 찾고 계신지 이야기해주세요.", time: "14:32" },
-  { id: 4, sender: "me", content: "미니멀하면서 편안한 캐주얼 룩을 원해요.", time: "14:33" },
+  { id: 3, sender: "other", content: "어떤 시술을 원하시는지 알려주세요.", time: "14:32" },
+  { id: 4, sender: "me", content: "레이어드 커트에 애쉬 브라운 염색을 생각하고 있어요.", time: "14:33" },
 ];
 
 const OTHER_NAME = "김소연";
