@@ -17,6 +17,14 @@
 - [ ] Zustand 스토어 기본 구조
 - [ ] Capacitor 초기화 + iOS/Android 프로젝트 생성
 
+**디자인 시스템**
+- [ ] TailwindCSS 커스텀 테마 정의 (컬러 팔레트, 타이포그래피, 간격)
+- [ ] 공통 컴포넌트 (Button, Input, Modal, Card, Avatar, Badge)
+- [ ] 아이콘 시스템 구성 (SVG sprite)
+- [ ] 폼 컴포넌트 (FormField, Select, Checkbox, ImageUpload)
+- [ ] 레이아웃 컴포넌트 (BottomNav, PageHeader, BottomSheet)
+- [ ] 로딩 / 에러 / 빈 상태 컴포넌트 (Skeleton, ErrorBoundary, EmptyState)
+
 **Backend (server)**
 - [ ] Node.js + Express + TypeScript 설정
 - [ ] Socket.io 연동
