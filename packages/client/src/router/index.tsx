@@ -1,21 +1,16 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// Auth
-const LoginPage = () => <div className="p-4">로그인</div>;
-const SignupPage = () => <div className="p-4">회원가입</div>;
-
-// Model
-const DiscoverPage = () => <div className="p-4">디자이너 탐색</div>;
-const DesignerDetailPage = () => <div className="p-4">디자이너 상세</div>;
-
-// Designer
-const MatchingInboxPage = () => <div className="p-4">매칭 신청함</div>;
-const SchedulePage = () => <div className="p-4">스케줄 관리</div>;
-
-// Shared
-const ChatRoomPage = () => <div className="p-4">채팅</div>;
-const ProfilePage = () => <div className="p-4">프로필</div>;
-const NotificationsPage = () => <div className="p-4">알림</div>;
+import { LoginPage } from "../pages/LoginPage";
+import { SignupPage } from "../pages/SignupPage";
+import { DiscoverPage } from "../pages/DiscoverPage";
+import { DesignerDetailPage } from "../pages/DesignerDetailPage";
+import { MatchingInboxPage } from "../pages/MatchingInboxPage";
+import { SchedulePage } from "../pages/SchedulePage";
+import { ChatRoomPage } from "../pages/ChatRoomPage";
+import { ProfilePage } from "../pages/ProfilePage";
+import { NotificationsPage } from "../pages/NotificationsPage";
+import { DesignSystemPage } from "../pages/DesignSystemPage";
+import { ComponentsPage } from "../pages/ComponentsPage";
 
 export function AppRouter() {
   return (
@@ -29,6 +24,8 @@ export function AppRouter() {
       <Route path="/chat/:roomId" element={<ChatRoomPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/notifications" element={<NotificationsPage />} />
+      <Route path="/design-system" element={<DesignSystemPage />} />
+      <Route path="/components" element={<ComponentsPage />} />
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
