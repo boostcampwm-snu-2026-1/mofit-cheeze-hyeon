@@ -17,6 +17,8 @@ import { ProfileEditPage } from "../pages/ProfileEditPage";
 import { PortfolioPage } from "../pages/PortfolioPage";
 import { PortfolioEditPage } from "../pages/PortfolioEditPage";
 import { NotificationsPage } from "../pages/NotificationsPage";
+import { MatchApplyPage } from "../pages/MatchApplyPage";
+import { MatchDetailPage } from "../pages/MatchDetailPage";
 import { DesignSystemPage } from "../pages/DesignSystemPage";
 import { ComponentsPage } from "../pages/ComponentsPage";
 
@@ -133,6 +135,24 @@ export function AppRouter() {
         element={
           <ProtectedRoute>
             <ProfileEditPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Matching flow */}
+      <Route
+        path="/match/apply/:designerId"
+        element={
+          <ProtectedRoute>
+            <MatchApplyPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/matching/:id"
+        element={
+          <ProtectedRoute>
+            <MatchDetailPage />
           </ProtectedRoute>
         }
       />
