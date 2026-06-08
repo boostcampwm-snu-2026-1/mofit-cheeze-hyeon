@@ -1,23 +1,17 @@
-import { HTMLAttributes } from "react";
+import { createElement, type ElementType, type HTMLAttributes } from "react";
 
-type AsProp<T extends keyof JSX.IntrinsicElements> = { as?: T };
+type TypographyProps = HTMLAttributes<HTMLElement> & { as?: ElementType };
 
-function makeTypography<E extends keyof JSX.IntrinsicElements>(
-  defaultTag: E,
-  className: string
-) {
+function makeTypography(defaultTag: ElementType, className: string) {
   return function TypographyComponent({
     as,
     className: extra = "",
-    children,
     ...props
-  }: HTMLAttributes<HTMLElement> & AsProp<keyof JSX.IntrinsicElements>) {
-    const Tag = (as ?? defaultTag) as keyof JSX.IntrinsicElements;
-    return (
-      <Tag className={[className, extra].join(" ")} {...(props as HTMLAttributes<HTMLElement>)}>
-        {children}
-      </Tag>
-    );
+  }: TypographyProps) {
+    return createElement(as ?? defaultTag, {
+      className: [className, extra].filter(Boolean).join(" "),
+      ...props,
+    });
   };
 }
 
