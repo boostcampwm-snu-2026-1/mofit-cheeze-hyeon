@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PageLayout, Avatar, BottomNav, EmptyState, Divider, Caption } from "@ui";
-import { useAuthStore } from "../store/auth";
 
 type NotifType = "match_accepted" | "match_request" | "match_rejected" | "chat" | "system";
 
@@ -82,7 +81,6 @@ function timeAgo(iso: string) {
 
 export function NotificationsPage() {
   const navigate = useNavigate();
-  const { user } = useAuthStore();
   const [notifications, setNotifications] = useState(MOCK_NOTIFICATIONS);
 
   function markRead(id: string) {

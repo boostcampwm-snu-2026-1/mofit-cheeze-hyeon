@@ -7,7 +7,6 @@ import {
   Divider,
   BottomNav,
   Body,
-  Caption,
 } from "@ui";
 import { useAuthStore } from "../store/auth";
 import { supabase } from "../lib/supabase";
