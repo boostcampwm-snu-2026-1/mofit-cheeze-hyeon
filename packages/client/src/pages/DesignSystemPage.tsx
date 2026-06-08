@@ -5,7 +5,7 @@ import {
   Card, CardHeader, CardBody, CardFooter,
   Input,
   Badge,
-  Display, DisplayAlt, Heading, SubHeading, CardTitle, BodyLarge, Body, Caption,
+  Display, Heading, SubHeading, CardTitle, BodyLarge, Body, Caption,
 } from "@ui";
 
 const SECTIONS = [
