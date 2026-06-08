@@ -7,6 +7,10 @@ export { Avatar } from "./Avatar";
 export { EmptyState } from "./EmptyState";
 export { Divider } from "./Divider";
 export { BottomNav } from "./BottomNav";
+export { Switch } from "./Switch";
+export { TagSelector } from "./TagSelector";
+export { ImageUpload } from "./ImageUpload";
+export type { UploadImage } from "./ImageUpload";
 export {
   Display,
   DisplayAlt,
