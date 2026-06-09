@@ -1,22 +1,27 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import type { User } from "@mofit/shared";
+import type { User, ModelProfile, DesignerProfile } from "@mofit/shared";
 
 interface AuthState {
   user: User | null;
-  accessToken: string | null;
-  setSession: (user: User, accessToken: string) => void;
+  modelProfile: ModelProfile | null;
+  designerProfile: DesignerProfile | null;
+  isLoading: boolean;
+  setUser: (user: User | null) => void;
+  setModelProfile: (profile: ModelProfile | null) => void;
+  setDesignerProfile: (profile: DesignerProfile | null) => void;
+  setLoading: (loading: boolean) => void;
   clearSession: () => void;
 }
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set) => ({
-      user: null,
-      accessToken: null,
-      setSession: (user, accessToken) => set({ user, accessToken }),
-      clearSession: () => set({ user: null, accessToken: null }),
-    }),
-    { name: "mofit-auth" }
-  )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  modelProfile: null,
+  designerProfile: null,
+  isLoading: true,
+  setUser: (user) => set({ user }),
+  setModelProfile: (modelProfile) => set({ modelProfile }),
+  setDesignerProfile: (designerProfile) => set({ designerProfile }),
+  setLoading: (isLoading) => set({ isLoading }),
+  clearSession: () =>
+    set({ user: null, modelProfile: null, designerProfile: null }),
+}));
