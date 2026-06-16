@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useVtNavigate } from "@ui";
 import {
   PageLayout,
+  PageHeader,
   Input,
   Button,
   Body,
@@ -34,7 +35,7 @@ const REGIONS = [
 const CAREER_OPTIONS = ["1년 미만", "1~3년", "3~5년", "5~10년", "10년 이상"];
 
 export function ProfileEditPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { user, modelProfile, designerProfile, setModelProfile, setDesignerProfile } =
     useAuthStore();
 
@@ -143,24 +144,15 @@ export function ProfileEditPage() {
   }
 
   return (
-    <PageLayout fullWidth className="p-0 py-0">
+    <PageLayout
+      fullWidth
+      className="p-0 py-0"
+      header={<PageHeader title="프로필 편집" onBack={() => navigate(-1)} />}
+    >
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-[430px] mx-auto px-5 py-6 flex flex-col"
       >
-        <div className="flex items-center gap-3 mb-8">
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="font-sans text-sm text-muted hover:text-charcoal transition-colors"
-          >
-            ← 뒤로
-          </button>
-          <p className="font-sans font-semibold text-base text-charcoal">
-            프로필 편집
-          </p>
-        </div>
-
         <div className="flex flex-col gap-7">
           {isModel ? (
             <>
