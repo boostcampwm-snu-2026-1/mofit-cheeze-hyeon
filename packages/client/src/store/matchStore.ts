@@ -10,6 +10,7 @@ interface MatchStore {
   designerMatchings: MockMatching[];
   addMatching: (m: MockMatching) => void;
   updateStatus: (id: string, status: "accepted" | "rejected") => void;
+  cancelMatching: (id: string) => void;
 }
 
 export const useMatchStore = create<MatchStore>((set) => ({
@@ -23,6 +24,13 @@ export const useMatchStore = create<MatchStore>((set) => ({
     set((s) => ({
       designerMatchings: s.designerMatchings.map((m) =>
         m.id === id ? { ...m, status } : m
+      ),
+    })),
+
+  cancelMatching: (id) =>
+    set((s) => ({
+      modelMatchings: s.modelMatchings.map((m) =>
+        m.id === id ? { ...m, status: "cancelled" as const } : m
       ),
     })),
 }));
