@@ -1,31 +1,71 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-cream: #f7f4ed;
-  --color-charcoal: #1c1c1c;
-  --color-offwhite: #fcfbf8;
-  --color-muted: #5f5f5d;
-  --color-border: #eceae4;
-  --color-border-interactive: rgba(28, 28, 28, 0.4);
-  --shadow-btn-primary: rgba(255, 255, 255, 0.2) 0px 0.5px 0px 0px inset,
-    rgba(0, 0, 0, 0.2) 0px 0px 0px 0.5px inset, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-  --shadow-focus: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  --color-primary: #4D8DFF;
+  --color-primary-hover: #3B7EF5;
+  --color-primary-light: #8AB8FF;
+  --color-accent: #FF8E7E;
+  --color-cream: #F3F8FF;
+  --color-charcoal: #172033;
+  --color-offwhite: #F8F9FA;
+  --color-muted: #6B7280;
+  --color-border: #E4EDF9;
+  --color-border-interactive: rgba(77, 141, 255, 0.4);
+  --shadow-card-1: 0 8px 24px rgba(77,141,255,0.08);
+  --shadow-card-2: 0 16px 40px rgba(77,141,255,0.12);
+  --shadow-modal: 0 24px 64px rgba(77,141,255,0.18);
+  --shadow-focus: 0 0 0 3px rgba(77,141,255,0.25);
 }
 
 @layer base {
   html {
-    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-    background-color: #f7f4ed;
-    color: #1c1c1c;
+    font-family: "Pretendard", system-ui, sans-serif;
+    background-color: #F3F8FF;
+    color: #172033;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: #f7f4ed;
+    background-color: #F3F8FF;
   }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── View Transitions ─────────────────────────────────────────────────────── */
+
+@keyframes vt-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 180ms ease-in vt-fade-out both;
+}
+
+::view-transition-new(root) {
+  animation: 280ms cubic-bezier(0.22, 1, 0.36, 1) vt-slide-in both;
 }
