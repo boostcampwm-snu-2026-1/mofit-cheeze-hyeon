@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { VtLink, useVtNavigate } from "@ui";
 import {
   PageLayout,
+  PageHeader,
   Avatar,
   Badge,
   BottomNav,
@@ -11,6 +12,7 @@ import {
   Caption,
   Tabs,
 } from "@ui";
+
 import { useAuthStore } from "../store/auth";
 import { useMatchStore } from "../store/matchStore";
 import type { MockMatching } from "../lib/mockData";
@@ -69,7 +71,7 @@ function MatchingRow({
       <Avatar name={name} size="md" />
       <div className="flex-1 min-w-0">
         <p className="font-sans font-medium text-sm text-charcoal">{name}</p>
-        <p className="font-sans text-xs text-muted mt-0.5 truncate">{sub}</p>
+        <p className="font-sans text-sm text-muted mt-0.5 truncate">{sub}</p>
       </div>
       <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
         <Badge variant={STATUS_VARIANT[matching.status]}>
@@ -82,7 +84,7 @@ function MatchingRow({
 }
 
 export function MatchingInboxPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { user } = useAuthStore();
   const { modelMatchings, designerMatchings } = useMatchStore();
   const [tab, setTab] = useState<StatusFilter>("all");
@@ -107,16 +109,16 @@ export function MatchingInboxPage() {
       fullWidth
       className="p-0 py-0"
       header={
-        <div className="flex items-center justify-between px-5 py-4">
-          <p className="font-sans font-semibold text-base text-charcoal">
-            {isDesigner ? "매칭 신청함" : "내 신청"}
-          </p>
-          {!isDesigner && (
-            <Link to="/discover">
-              <Button variant="ghost" size="sm">디자이너 탐색</Button>
-            </Link>
-          )}
-        </div>
+        <PageHeader
+          title={isDesigner ? "매칭 신청함" : "내 신청"}
+          right={
+            isDesigner ? (
+              <Button variant="ghost" size="sm" onClick={() => navigate("/my-postings")}>
+                공고 관리
+              </Button>
+            ) : undefined
+          }
+        />
       }
       footer={<BottomNav />}
     >
@@ -144,9 +146,9 @@ export function MatchingInboxPage() {
               }
               action={
                 tab === "all" && !isDesigner ? (
-                  <Link to="/discover">
+                  <VtLink to="/discover">
                     <Button variant="primary" size="sm">디자이너 탐색</Button>
-                  </Link>
+                  </VtLink>
                 ) : undefined
               }
             />

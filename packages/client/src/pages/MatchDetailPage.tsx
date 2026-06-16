@@ -1,13 +1,14 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useVtNavigate } from "@ui";
 import {
   PageLayout,
+  PageHeader,
   Avatar,
   Badge,
   Button,
   Divider,
   Body,
   Caption,
-  Switch,
 } from "@ui";
 import { useAuthStore } from "../store/auth";
 import { useMatchStore } from "../store/matchStore";
@@ -31,10 +32,10 @@ function formatDate(iso: string) {
 }
 
 export function MatchDetailPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { id } = useParams<{ id: string }>();
   const { user } = useAuthStore();
-  const { modelMatchings, designerMatchings, updateStatus } = useMatchStore();
+  const { modelMatchings, designerMatchings, updateStatus, cancelMatching } = useMatchStore();
 
   const isDesigner = user?.role === "designer";
   const allMatchings = isDesigner ? designerMatchings : modelMatchings;
@@ -42,8 +43,12 @@ export function MatchDetailPage() {
 
   if (!matching) {
     return (
-      <PageLayout fullWidth className="p-0 py-0">
-        <div className="flex items-center justify-center min-h-screen">
+      <PageLayout
+        fullWidth
+        className="p-0 py-0"
+        header={<PageHeader title="매칭 신청 상세" onBack={() => navigate(-1)} />}
+      >
+        <div className="flex items-center justify-center min-h-[60vh]">
           <Body className="text-muted">신청서를 찾을 수 없어요</Body>
         </div>
       </PageLayout>
@@ -63,21 +68,12 @@ export function MatchDetailPage() {
   }
 
   return (
-    <PageLayout fullWidth className="p-0 py-0">
+    <PageLayout
+      fullWidth
+      className="p-0 py-0"
+      header={<PageHeader title="매칭 신청 상세" onBack={() => navigate(-1)} />}
+    >
       <div className="w-full max-w-[430px] mx-auto px-5 py-6 flex flex-col">
-        <div className="flex items-center gap-3 mb-6">
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="font-sans text-sm text-muted hover:text-charcoal transition-colors"
-          >
-            ← 뒤로
-          </button>
-          <p className="font-sans font-semibold text-base text-charcoal">
-            매칭 신청 상세
-          </p>
-        </div>
-
         {/* Status + counterpart */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
@@ -104,6 +100,30 @@ export function MatchDetailPage() {
             </p>
             <Body className="text-charcoal">{matching.treatmentStyle}</Body>
           </div>
+
+          {/* Hair state — shown prominently so designer can decide */}
+          {(matching.hairLength || matching.hairCondition || matching.currentColor) && (
+            <div className="rounded-card border border-border bg-surface-subtle p-4">
+              <p className="font-sans text-xs font-medium text-muted mb-3">현재 헤어 상태</p>
+              <div className="flex flex-wrap gap-2">
+                {matching.hairLength && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-pill border border-border font-sans text-xs text-charcoal">
+                    <span className="text-muted">길이</span> {matching.hairLength}
+                  </span>
+                )}
+                {matching.hairCondition && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-pill border border-border font-sans text-xs text-charcoal">
+                    <span className="text-muted">상태</span> {matching.hairCondition}
+                  </span>
+                )}
+                {matching.currentColor && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-pill border border-border font-sans text-xs text-charcoal">
+                    <span className="text-muted">컬러</span> {matching.currentColor}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Memo */}
           {matching.memo && (
@@ -148,20 +168,22 @@ export function MatchDetailPage() {
             <p className="font-sans text-xs font-medium text-muted mb-3">
               동의 조건
             </p>
-            <div className="flex flex-col gap-3">
-              <Switch
-                checked={matching.allowContentUsage}
-                onChange={() => {}}
-                label="콘텐츠 활용 동의"
-                description="SNS·포트폴리오 활용 가능"
-                disabled
-              />
-              <Switch
-                checked={matching.allowFaceExposure}
-                onChange={() => {}}
-                label="얼굴 공개 동의"
-                disabled
-              />
+            <div className="flex flex-col gap-2.5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-sans text-sm font-medium text-charcoal">콘텐츠 활용 동의</p>
+                  <Caption>SNS·포트폴리오 활용 가능</Caption>
+                </div>
+                <Badge variant={matching.allowContentUsage ? "default" : "muted"}>
+                  {matching.allowContentUsage ? "동의" : "비동의"}
+                </Badge>
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="font-sans text-sm font-medium text-charcoal">얼굴 공개 동의</p>
+                <Badge variant={matching.allowFaceExposure ? "default" : "muted"}>
+                  {matching.allowFaceExposure ? "동의" : "비동의"}
+                </Badge>
+              </div>
             </div>
           </div>
         </div>
@@ -189,21 +211,29 @@ export function MatchDetailPage() {
         )}
 
         {!isDesigner && matching.status === "pending" && (
-          <Button
-            variant="ghost"
-            size="md"
-            className="w-full mt-8"
-            onClick={() => navigate(-1)}
-          >
-            신청 취소 (준비 중)
-          </Button>
+          <div className="mt-8">
+            <Button
+              variant="ghost"
+              size="md"
+              className="w-full"
+              onClick={() => {
+                cancelMatching(matching.id);
+                navigate(-1);
+              }}
+            >
+              신청 취소
+            </Button>
+          </div>
         )}
 
         {matching.status === "accepted" && (
-          <div className="mt-8 p-4 rounded-card border border-border text-center">
+          <div className="mt-8 flex flex-col gap-3 p-4 rounded-card border border-border text-center">
             <Caption className="text-muted">
-              매칭이 수락되었어요. 채팅으로 일정을 조율해보세요. (Phase 3)
+              매칭이 수락되었어요. 채팅으로 일정을 조율해보세요.
             </Caption>
+            <Button variant="primary" size="md" onClick={() => navigate(`/chat/${matching.id}`)}>
+              채팅하기
+            </Button>
           </div>
         )}
       </div>
