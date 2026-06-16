@@ -1,298 +1,199 @@
 # Design System
 
-## 1. Visual Theme & Atmosphere
+## 1. Brand Philosophy
 
-Lovable's website radiates warmth through restraint. The entire page sits on a creamy, parchment-toned background (`#f7f4ed`) that immediately separates it from the cold-white conventions of most developer tool sites. This isn't minimalism for minimalism's sake — it's a deliberate choice to feel approachable, almost analog, like a well-crafted notebook. The near-black text (`#1c1c1c`) against this warm cream creates a contrast ratio that's easy on the eyes while maintaining sharp readability.
+### Product Identity
 
-The custom Camera Plain Variable typeface is the system's secret weapon. Unlike geometric sans-serifs that signal "tech company," Camera Plain has a humanist warmth — slightly rounded terminals, organic curves, and a comfortable reading rhythm. At display sizes (48px–60px), weight 600 with aggressive negative letter-spacing (-0.9px to -1.5px) compresses headlines into confident, editorial statements. The font uses `ui-sans-serif, system-ui` as fallbacks, acknowledging that the custom typeface carries the brand personality.
+모핏(MOFIT)은 헤어 모델과 헤어 디자이너를 연결하는 스타일 매칭 플랫폼이다.
 
-What makes Lovable's visual system distinctive is its opacity-driven depth model. Rather than using a traditional gray scale, the system modulates `#1c1c1c` at varying opacities (0.03, 0.04, 0.4, 0.82–0.83) to create a unified tonal range. Every shade of gray on the page is technically the same hue — just more or less transparent. This creates a visual coherence that's nearly impossible to achieve with arbitrary hex values. The border system follows suit: `1px solid #eceae4` for light divisions and `1px solid rgba(28, 28, 28, 0.4)` for stronger interactive boundaries.
+사용자는 디자이너를 찾기 위해 방문하는 것이 아니라, **자신이 원하는 스타일을 발견하기 위해** 방문한다.
 
-**Key Characteristics:**
-- Warm parchment background (`#f7f4ed`) — not white, not beige, a deliberate cream that feels hand-selected
-- Camera Plain Variable typeface with humanist warmth and editorial letter-spacing at display sizes
-- Opacity-driven color system: all grays derived from `#1c1c1c` at varying transparency levels
-- Inset shadow technique on buttons: `rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset`
-- Warm neutral border palette: `#eceae4` for subtle, `rgba(28,28,28,0.4)` for interactive elements
-- Full-pill radius (`9999px`) used extensively for action buttons and icon containers
-- Focus state uses `rgba(0,0,0,0.1) 0px 4px 12px` shadow for soft, warm emphasis
-- shadcn/ui + Radix UI component primitives with Tailwind CSS utility styling
+모핏은 **스타일 탐색 → 매칭 → 상담 → 예약 → 시술 → 리뷰** 까지의 경험을 연결한다.
 
-## 2. Color Palette & Roles
+---
 
-### Primary
-- **Cream** (`#f7f4ed`): Page background, card surfaces, button surfaces. The foundation — warm, paper-like, human.
-- **Charcoal** (`#1c1c1c`): Primary text, headings, dark button backgrounds. Not pure black — organic warmth.
-- **Off-White** (`#fcfbf8`): Button text on dark backgrounds, subtle highlight. Barely distinguishable from pure white.
+### Emotional Goals
 
-### Neutral Scale (Opacity-Based)
-- **Charcoal 100%** (`#1c1c1c`): Primary text, headings, dark surfaces.
-- **Charcoal 83%** (`rgba(28,28,28,0.83)`): Strong secondary text.
-- **Charcoal 82%** (`rgba(28,28,28,0.82)`): Body copy.
-- **Muted Gray** (`#5f5f5d`): Secondary text, descriptions, captions.
-- **Charcoal 40%** (`rgba(28,28,28,0.4)`): Interactive borders, button outlines.
-- **Charcoal 4%** (`rgba(28,28,28,0.04)`): Subtle hover backgrounds, micro-tints.
-- **Charcoal 3%** (`rgba(28,28,28,0.03)`): Barely-visible overlays, background depth.
+| 감정 | 맥락 |
+|---|---|
+| 설렘 | 새로운 스타일을 발견하는 순간 |
+| 기대감 | 포트폴리오를 탐색하는 경험 |
+| 신뢰 | 내 머리를 맡길 수 있다는 확신 |
+| 만족감 | 스타일 변화가 성공적으로 이루어진 경험 |
 
-### Surface & Border
-- **Light Cream** (`#eceae4`): Card borders, dividers, image outlines. The warm divider line.
-- **Cream Surface** (`#f7f4ed`): Card backgrounds, section fills — same as page background for seamless integration.
+---
 
-### Interactive
-- **Ring Blue** (`#3b82f6` at 50% opacity): `--tw-ring-color`, Tailwind focus ring.
-- **Focus Shadow** (`rgba(0,0,0,0.1) 0px 4px 12px`): Focus and active state shadow — soft, warm, diffused.
+### Design Principles
 
-### Inset Shadows
-- **Button Inset** (`rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px 0px`): The signature multi-layer inset shadow on dark buttons.
+| 원칙 | 설명 |
+|---|---|
+| **Portfolio First** | 사용자는 디자이너보다 결과물을 먼저 본다 |
+| **Trust Through Transparency** | 포트폴리오, 리뷰, 비용, 조건을 투명하게 노출한다 |
+| **Airy Professionalism** | 가볍고 세련되지만 전문성을 잃지 않는다 |
+| **Mobile Native** | 모든 경험은 모바일 중심으로 설계한다 |
 
-## 3. Typography Rules
+---
 
-### Font Family
-- **Primary**: `Camera Plain Variable`, with fallbacks: `ui-sans-serif, system-ui`
-- **Weight range**: 400 (body/reading), 480 (special display), 600 (headings/emphasis)
-- **Feature**: Variable font with continuous weight axis — allows fine-tuned intermediary weights like 480.
+## 2. Visual Theme & Atmosphere
 
-### Hierarchy
+| 인스피레이션 | 비주얼 키워드 |
+|---|---|
+| Airbnb | Airy |
+| Apple | Premium |
+| Pinterest | Clean |
+| Instagram | Trustworthy |
+| — | Modern |
+| — | Transformative |
 
-| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
-|------|------|------|--------|-------------|----------------|-------|
-| Display Hero | Camera Plain Variable | 60px (3.75rem) | 600 | 1.00–1.10 (tight) | -1.5px | Maximum impact, editorial |
-| Display Alt | Camera Plain Variable | 60px (3.75rem) | 480 | 1.00 (tight) | normal | Lighter hero variant |
-| Section Heading | Camera Plain Variable | 48px (3.00rem) | 600 | 1.00 (tight) | -1.2px | Feature section titles |
-| Sub-heading | Camera Plain Variable | 36px (2.25rem) | 600 | 1.10 (tight) | -0.9px | Sub-sections |
-| Card Title | Camera Plain Variable | 20px (1.25rem) | 400 | 1.25 (tight) | normal | Card headings |
-| Body Large | Camera Plain Variable | 18px (1.13rem) | 400 | 1.38 | normal | Introductions |
-| Body | Camera Plain Variable | 16px (1.00rem) | 400 | 1.50 | normal | Standard reading text |
-| Button | Camera Plain Variable | 16px (1.00rem) | 400 | 1.50 | normal | Button labels |
-| Button Small | Camera Plain Variable | 14px (0.88rem) | 400 | 1.50 | normal | Compact buttons |
-| Link | Camera Plain Variable | 16px (1.00rem) | 400 | 1.50 | normal | Underline decoration |
-| Link Small | Camera Plain Variable | 14px (0.88rem) | 400 | 1.50 | normal | Footer links |
-| Caption | Camera Plain Variable | 14px (0.88rem) | 400 | 1.50 | normal | Metadata, small text |
+### Visual Direction
 
-### Principles
-- **Warm humanist voice**: Camera Plain Variable gives Lovable its approachable personality. The slightly rounded terminals and organic curves contrast with the sharp geometric sans-serifs used by most developer tools.
-- **Variable weight as design tool**: The font supports continuous weight values (e.g., 480), enabling nuanced hierarchy beyond standard weight stops. Weight 480 at 60px creates a display style that feels lighter than semibold but stronger than regular.
-- **Compression at scale**: Headlines use negative letter-spacing (-0.9px to -1.5px) for editorial impact. Body text stays at normal tracking for comfortable reading.
-- **Two weights, clear roles**: 400 (body/UI/links/buttons) and 600 (headings/emphasis). The narrow weight range creates hierarchy through size and spacing, not weight variation.
+모핏은 따뜻한 크림톤보다 **밝고 공기감 있는 블루 계열**의 분위기를 사용한다.
 
-## 4. Component Stylings
+전체 UI는 화이트 기반으로 구성하며, 브랜드 경험은 **Soft Blue Gradient**를 통해 표현한다.
 
-### Buttons
+### Atmosphere Principles
 
-**Primary Dark (Inset Shadow)**
-- Background: `#1c1c1c`
-- Text: `#fcfbf8`
-- Padding: 8px 16px
-- Radius: 6px
-- Shadow: `rgba(0,0,0,0) 0px 0px 0px 0px, rgba(0,0,0,0) 0px 0px 0px 0px, rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px 0px`
-- Active: opacity 0.8
-- Focus: `rgba(0,0,0,0.1) 0px 4px 12px` shadow
-- Use: Primary CTA ("Start Building", "Get Started")
+| 원칙 | 설명 |
+|---|---|
+| **Soft Blue Atmosphere** | 서비스 전반에 은은한 블루 톤을 활용한다 |
+| **Floating Shapes** | 큰 원형 오브젝트와 블러 효과를 적극 활용한다 |
+| **Glass Layers** | 반투명 레이어와 부드러운 그라데이션을 활용한다 |
+| **Minimal Surface** | 카드는 단순하고 깨끗하게 유지한다 |
 
-**Ghost / Outline**
-- Background: transparent
-- Text: `#1c1c1c`
-- Padding: 8px 16px
-- Radius: 6px
-- Border: `1px solid rgba(28,28,28,0.4)`
-- Active: opacity 0.8
-- Focus: `rgba(0,0,0,0.1) 0px 4px 12px` shadow
-- Use: Secondary actions ("Log In", "Documentation")
+---
 
-**Cream Surface**
-- Background: `#f7f4ed`
-- Text: `#1c1c1c`
-- Padding: 8px 16px
-- Radius: 6px
-- No border
-- Active: opacity 0.8
-- Use: Tertiary actions, toolbar buttons
+## 3. Color Palette
 
-**Pill / Icon Button**
-- Background: `#f7f4ed`
-- Text: `#1c1c1c`
-- Radius: 9999px (full pill)
-- Shadow: same inset pattern as primary dark
-- Opacity: 0.5 (default), 0.8 (active)
-- Use: Additional actions, plan mode toggle, voice recording
+| 이름 | 역할 | HEX | 용도 |
+|---|---|---|---|
+| Soft Blue | Primary | `#4D8DFF` | 주요 CTA, 예약하기, 매칭 신청, 링크, 활성 상태 |
+| — | Primary Hover | `#3B7EF5` | Primary 버튼·요소 호버 상태 |
+| Soft Blue Light | Primary Light | `#8AB8FF` | 배경 요소, 그라데이션, Hero 영역 |
+| Soft Coral | Accent | `#FF8E7E` | 추천 태그, 신규 배지, 이벤트, 하이라이트 |
+| Soft Blue Gray | Background | `#F3F8FF` | 전체 앱 배경 |
+| White | Surface | `#F8F9FA` | 카드, 모달, 입력창 |
+| — | Border | `#E4EDF9` | 구분선, 카드·입력창 테두리 |
+| — | Text Primary | `#172033` | 주요 본문 텍스트 |
+| — | Text Secondary | `#6B7280` | 보조·설명 텍스트 |
+| — | Success | `#22C55E` | 성공 상태 |
+| — | Warning | `#F59E0B` | 경고 상태 |
+| — | Error | `#EF4444` | 오류 상태 |
 
-### Cards & Containers
-- Background: `#f7f4ed` (matches page)
-- Border: `1px solid #eceae4`
-- Radius: 12px (standard), 16px (featured), 8px (compact)
-- No box-shadow by default — borders define boundaries
-- Image cards: `1px solid #eceae4` with 12px radius
+---
 
-### Inputs & Forms
-- Background: `#f7f4ed`
-- Text: `#1c1c1c`
-- Border: `1px solid #eceae4`
-- Radius: 6px
-- Focus: ring blue (`rgba(59,130,246,0.5)`) outline
-- Placeholder: `#5f5f5d`
+## 4. Gradient System
 
-### Navigation
-- Clean horizontal nav on cream background, fixed
-- Logo/wordmark left-aligned (128.75 x 22px)
-- Links: Camera Plain 14–16px weight 400, `#1c1c1c` text
-- CTA: dark button with inset shadow, 6px radius
-- Mobile: hamburger menu with 6px radius button
-- Subtle border or no border on scroll
+| 이름 | CSS | 용도 |
+|---|---|---|
+| Primary | `linear-gradient(135deg, #4D8DFF, #8AB8FF)` | Hero, CTA, 강조 카드 |
+| Light | `linear-gradient(135deg, #F8F9FA, #EAF3FF)` | 배경, 카드 |
+| Accent | `linear-gradient(135deg, #4D8DFF, #FFB7A8)` | 이벤트, 프로모션 |
 
-### Links
-- Color: `#1c1c1c`
-- Decoration: underline (default)
-- Hover: primary accent (via CSS variable `hsl(var(--primary))`)
-- No color change on hover — decoration carries the interactive signal
+---
 
-### Image Treatment
-- Showcase/portfolio images with `1px solid #eceae4` border
-- Consistent 12px border radius on all image containers
-- Soft gradient backgrounds behind hero content (warm multi-color wash)
-- Gallery-style presentation for template/project showcases
+## 5. Typography
 
-### Distinctive Components
+**Font Family** — `Pretendard` / Fallback: `system-ui, sans-serif`
 
-**AI Chat Input**
-- Large prompt input area with soft borders
-- Suggestion pills with `#eceae4` borders
-- Voice recording / plan mode toggle buttons as pill shapes (9999px)
-- Warm, inviting input area — not clinical
+| Role | Size | Weight |
+|---|---|---|
+| Hero | 36px | 700 |
+| H1 | 28px | 700 |
+| H2 | 24px | 700 |
+| H3 | 20px | 600 |
+| Body Large | 18px | 500 |
+| Body | 16px | 400 |
+| Caption | 14px | 400 |
+| Small | 12px | 400 |
 
-**Template Gallery**
-- Card grid showing project templates
-- Each card: image + title, `1px solid #eceae4` border, 12px radius
-- Hover: subtle shadow or border darkening
-- Category labels as text links
+---
 
-**Stats Bar**
-- Large metrics: "0M+" pattern in 48px+ weight 600
-- Descriptive text below in muted gray
-- Horizontal layout with generous spacing
+## 6. Component System
 
-## 5. Layout Principles
+| 컴포넌트 | 배경 | 텍스트 | 테두리 | Radius | 기타 |
+|---|---|---|---|---|---|
+| Primary Button | `#4D8DFF` | `#F8F9FA` | — | `14px` | — |
+| Secondary Button | `#F8F9FA` | — | `1px solid #E4EDF9` | — | — |
+| Tag | `#FFF3F0` | `#FF8E7E` | — | `999px` | — |
+| Card | `#F8F9FA` | — | `1px solid #E4EDF9` | `20px` | — |
 
-### Spacing System
-- Base unit: 8px
-- Scale: 8px, 10px, 12px, 16px, 24px, 32px, 40px, 56px, 80px, 96px, 128px, 176px, 192px, 208px
-- The scale expands generously at the top end — sections use 80px–208px vertical spacing for editorial breathing room
+---
 
-### Grid & Container
-- Max content width: approximately 1200px (centered)
-- Hero: centered single-column with massive vertical padding (96px+)
-- Feature sections: 2–3 column grids
-- Full-width footer with multi-column link layout
-- Showcase sections with centered card grids
+## 7. Portfolio Experience
 
-### Whitespace Philosophy
-- **Editorial generosity**: Lovable's spacing is lavish at section boundaries (80px–208px). The warm cream background makes these expanses feel cozy rather than empty.
-- **Content-driven rhythm**: Tight internal spacing within cards (12–24px) contrasts with wide section gaps, creating a reading rhythm that alternates between focused content and visual rest.
-- **Section separation**: Footer uses `1px solid #eceae4` border and 16px radius container. Sections defined by generous spacing rather than border lines.
+### 탐색 우선순위
 
-### Border Radius Scale
-- Micro (4px): Small buttons, interactive elements
-- Standard (6px): Buttons, inputs, navigation menu
-- Comfortable (8px): Compact cards, divs
-- Card (12px): Standard cards, image containers, templates
-- Container (16px): Large containers, footer sections
-- Full Pill (9999px): Action pills, icon buttons, toggles
+| 순위 | 요소 |
+|---|---|
+| 1 | 결과 이미지 |
+| 2 | Before / After |
+| 3 | 스타일명 |
+| 4 | 디자이너 |
+| 5 | 비용 |
+| 6 | 리뷰 |
 
-## 6. Depth & Elevation
+### Layout & Hero
 
-| Level | Treatment | Use |
-|-------|-----------|-----|
-| Flat (Level 0) | No shadow, cream background | Page surface, most content |
-| Bordered (Level 1) | `1px solid #eceae4` | Cards, images, dividers |
-| Inset (Level 2) | `rgba(255,255,255,0.2) 0px 0.5px 0px inset, rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset, rgba(0,0,0,0.05) 0px 1px 2px` | Dark buttons, primary actions |
-| Focus (Level 3) | `rgba(0,0,0,0.1) 0px 4px 12px` | Active/focus states |
-| Ring (Accessibility) | `rgba(59,130,246,0.5)` 2px ring | Keyboard focus on inputs |
+Pinterest + Instagram 구조. 이미지가 가장 중요하다.
 
-**Shadow Philosophy**: Lovable's depth system is intentionally shallow. Instead of floating cards with dramatic drop-shadows, the system relies on warm borders (`#eceae4`) against the cream surface to create gentle containment. The only notable shadow pattern is the inset shadow on dark buttons — a subtle multi-layer technique where a white highlight line sits at the top edge while a dark ring and soft drop handle the bottom. This creates a tactile, pressed-into-surface feeling rather than a hovering-above-surface feeling. The warm focus shadow (`rgba(0,0,0,0.1) 0px 4px 12px`) is deliberately diffused and large, creating a soft glow rather than a sharp outline.
+Hero 영역은 **대형 이미지 + Soft Gradient + 블러 오브젝트** 조합을 사용한다.
 
-### Decorative Depth
-- Hero: soft, warm multi-color gradient wash (pinks, oranges, blues) behind hero — atmospheric, barely visible
-- Footer: gradient background with warm tones transitioning to the bottom
-- No harsh section dividers — spacing and background warmth handle transitions
+---
 
-## 7. Do's and Don'ts
+## 8. Layout Principles
 
-### Do
-- Use the warm cream background (`#f7f4ed`) as the page foundation — it's the brand's signature warmth
-- Use Camera Plain Variable at display sizes with negative letter-spacing (-0.9px to -1.5px)
-- Derive all grays from `#1c1c1c` at varying opacity levels for tonal unity
-- Use the inset shadow technique on dark buttons for tactile depth
-- Use `#eceae4` borders instead of shadows for card containment
-- Keep the weight system narrow: 400 for body/UI, 600 for headings
-- Use full-pill radius (9999px) only for action pills and icon buttons
-- Apply opacity 0.8 on active states for responsive tactile feedback
+**Base Unit** — `8px`
 
-### Don't
-- Don't use pure white (`#ffffff`) as a page background — the cream is intentional
-- Don't use heavy box-shadows for cards — borders are the containment mechanism
-- Don't introduce saturated accent colors — the palette is intentionally warm-neutral
-- Don't use weight 700 (bold) — 600 is the maximum weight in the system
-- Don't apply 9999px radius on rectangular buttons — pills are for icon/action toggles
-- Don't use sharp focus outlines — the system uses soft shadow-based focus indicators
-- Don't mix border styles — `#eceae4` for passive, `rgba(28,28,28,0.4)` for interactive
-- Don't increase letter-spacing on headings — Camera Plain is designed to run tight at scale
+**Container** — `max-width: 768px` (Mobile First)
 
-## 8. Responsive Behavior
+**Safe Area** — `padding-left: 20px` / `padding-right: 20px`
 
-### Breakpoints
-| Name | Width | Key Changes |
-|------|-------|-------------|
-| Mobile Small | <600px | Tight single column, reduced padding |
-| Mobile | 600–640px | Standard mobile layout |
-| Tablet Small | 640–700px | 2-column grids begin |
-| Tablet | 700–768px | Card grids expand |
-| Desktop Small | 768–1024px | Multi-column layouts |
-| Desktop | 1024–1280px | Full feature layout |
-| Large Desktop | 1280–1536px | Maximum content width, generous margins |
+**Section Gap** — `40px` / **Card Gap** — `16px`
 
-### Touch Targets
-- Buttons: 8px 16px padding (comfortable touch)
-- Navigation: adequate spacing between items
-- Pill buttons: 9999px radius creates large tap-friendly targets
-- Menu toggle: 6px radius button with adequate sizing
+---
 
-### Collapsing Strategy
-- Hero: 60px → 48px → 36px headline scaling with proportional letter-spacing
-- Navigation: horizontal links → hamburger menu at 768px
-- Feature cards: 3-column → 2-column → single column stacked
-- Template gallery: grid → stacked vertical cards
-- Stats bar: horizontal → stacked vertical
-- Footer: multi-column → stacked single column
-- Section spacing: 128px+ → 64px on mobile
+## 9. Elevation
 
-### Image Behavior
-- Template screenshots maintain `1px solid #eceae4` border at all sizes
-- 12px border radius preserved across breakpoints
-- Gallery images responsive with consistent aspect ratios
-- Hero gradient softens/simplifies on mobile
+| 레벨 | 용도 | Shadow |
+|---|---|---|
+| Level 0 | 배경 | 없음 |
+| Level 1 | Card | `0 8px 24px rgba(77,141,255,0.08)` |
+| Level 2 | Hover | `0 16px 40px rgba(77,141,255,0.12)` |
+| Level 3 | Modal | `0 24px 64px rgba(77,141,255,0.18)` |
 
-## 9. Agent Prompt Guide
+---
 
-### Quick Color Reference
-- Primary CTA: Charcoal (`#1c1c1c`)
-- Background: Cream (`#f7f4ed`)
-- Heading text: Charcoal (`#1c1c1c`)
-- Body text: Muted Gray (`#5f5f5d`)
-- Border: `#eceae4` (passive), `rgba(28,28,28,0.4)` (interactive)
-- Focus: `rgba(0,0,0,0.1) 0px 4px 12px`
-- Button text on dark: `#fcfbf8`
+## 10. Motion
 
-### Example Component Prompts
-- "Create a hero section on cream background (#f7f4ed). Headline at 60px Camera Plain Variable weight 600, line-height 1.10, letter-spacing -1.5px, color #1c1c1c. Subtitle at 18px weight 400, line-height 1.38, color #5f5f5d. Dark CTA button (#1c1c1c bg, #fcfbf8 text, 6px radius, 8px 16px padding, inset shadow) and ghost button (transparent bg, 1px solid rgba(28,28,28,0.4) border, 6px radius)."
-- "Design a card on cream (#f7f4ed) background. Border: 1px solid #eceae4. Radius 12px. No box-shadow. Title at 20px Camera Plain Variable weight 400, line-height 1.25, color #1c1c1c. Body at 14px weight 400, color #5f5f5d."
-- "Build a template gallery: grid of cards with 12px radius, 1px solid #eceae4 border, cream backgrounds. Each card: image with 12px top radius, title below. Hover: subtle border darkening."
-- "Create navigation: sticky on cream (#f7f4ed). Camera Plain 16px weight 400 for links, #1c1c1c text. Dark CTA button right-aligned with inset shadow. Mobile: hamburger menu with 6px radius."
-- "Design a stats section: large numbers at 48px Camera Plain weight 600, letter-spacing -1.2px, #1c1c1c. Labels below at 16px weight 400, #5f5f5d. Horizontal layout with 32px gap."
+| 속도 | Duration | 용도 |
+|---|---|---|
+| Fast | `150ms` | 즉각 반응이 필요한 전환 |
+| Normal | `250ms` | 일반적인 상태 변화 |
+| Slow | `350ms` | 페이지·모달 진입 |
 
-### Iteration Guide
-1. Always use cream (`#f7f4ed`) as the base — never pure white
-2. Derive grays from `#1c1c1c` at opacity levels rather than using distinct hex values
-3. Use `#eceae4` borders for containment, not shadows
-4. Letter-spacing scales with size: -1.5px at 60px, -1.2px at 48px, -0.9px at 36px, normal at 16px
-5. Two weights: 400 (everything except headings) and 600 (headings)
-6. The inset shadow on dark buttons is the signature detail — don't skip it
-7. Camera Plain Variable at weight 480 is for special display moments only
+**Animation Style** — Smooth · Premium · Natural
+
+---
+
+## 11. Do's & Don'ts
+
+| Do | Don't |
+|---|---|
+| 공기감 있는 블루 톤 사용 | 핑크 위주의 UI |
+| 부드러운 그라데이션 활용 | 과도한 색상 사용 |
+| 큰 곡선 오브젝트 활용 | 강한 그림자 |
+| 포트폴리오 이미지 우선 노출 | 복잡한 정보 밀집 |
+| 충분한 여백 확보 | 쇼핑몰 스타일 배너 |
+
+---
+
+## 12. Agent Prompt Guide
+
+> 모핏은 헤어 포트폴리오 기반 매칭 플랫폼이다.
+> Apple, Airbnb, Pinterest의 미니멀한 감성을 참고한다.
+>
+> - Primary Color: Soft Blue `#4D8DFF`
+> - Accent Color: Soft Coral `#FF8E7E`
+> - Background: Soft Blue Gray `#F3F8FF`
+> - 비주얼 키워드: Airy · Premium · Trustworthy · Modern
+> - 대형 블러 오브젝트와 Soft Gradient를 적극 활용한다
