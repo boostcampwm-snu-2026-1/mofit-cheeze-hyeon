@@ -29,7 +29,7 @@ export function Switch({ checked, onChange, label, description, disabled }: Swit
       <div
         className={[
           "relative inline-flex h-6 w-11 shrink-0 rounded-pill border-2 border-transparent transition-colors duration-200",
-          checked ? "bg-charcoal" : "bg-border",
+          checked ? "bg-primary" : "bg-border",
         ].join(" ")}
       >
         <span

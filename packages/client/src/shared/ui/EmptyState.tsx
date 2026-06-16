@@ -14,7 +14,7 @@ export function EmptyState({ title, description, action, className = "" }: Empty
         " "
       )}
     >
-      <div className="w-12 h-12 rounded-card border border-border flex items-center justify-center mb-5 bg-[rgba(28,28,28,0.03)]">
+      <div className="w-12 h-12 rounded-card border border-border flex items-center justify-center mb-5 bg-surface-subtle">
         <svg
           width="20"
           height="20"

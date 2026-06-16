@@ -16,7 +16,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ radius = "card", className = "", children, ...props }, ref) => (
     <div
       ref={ref}
-      className={["bg-cream border border-border", radiusStyles[radius], className].join(" ")}
+      className={["bg-offwhite border border-border", radiusStyles[radius], className].join(" ")}
       {...props}
     >
       {children}

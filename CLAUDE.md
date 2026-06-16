@@ -19,10 +19,10 @@ import { Display, Heading, Body, Caption } from '@ui';
 
 | 컴포넌트 | 용도 |
 |---|---|
-| `PageLayout` | **모든 앱 페이지의 최상위 래퍼** — header/footer 슬롯, 크림 배경 |
+| `PageLayout` | **모든 앱 페이지의 최상위 래퍼** — header/footer 슬롯, Soft Blue Gray 배경 |
 | `BottomNav` | 모바일 하단 탭 네비게이션 — PageLayout의 footer에 주입 |
-| `Button` | variant: `primary` \| `ghost` \| `cream` \| `pill`, size: `sm` \| `md` \| `lg` |
-| `Card` + `CardHeader/Body/Footer` | radius: `compact`(8px) \| `card`(12px) \| `container`(16px) |
+| `Button` | variant: `primary`(Soft Blue) \| `ghost` \| `cream` \| `pill`, size: `sm` \| `md` \| `lg` |
+| `Card` + `CardHeader/Body/Footer` | radius: `compact`(8px) \| `card`(14px) \| `container`(20px) |
 | `Input` | label, placeholder, hint, error, disabled |
 | `Badge` | variant: `default` \| `muted` \| `outline` |
 | `Avatar` | src?, name(이니셜 폴백), size: `sm` \| `md` \| `lg` \| `xl` |
@@ -86,14 +86,19 @@ Auth 페이지(로그인/회원가입)는 BottomNav 없이 사용:
 
 Tailwind 유틸리티로 디자인 토큰을 사용한다. 임의 hex 값 금지.
 
-| 용도 | 클래스 |
-|---|---|
-| 페이지/카드 배경 | `bg-cream` |
-| 주요 텍스트 | `text-charcoal` |
-| 보조 텍스트 | `text-muted` |
-| 기본 테두리 | `border-border` |
-| 인터랙티브 테두리 | `border-border-interactive` |
-| 다크 버튼 배경 | `bg-charcoal` |
+| 용도 | 클래스 | 값 |
+|---|---|---|
+| 앱 전체 배경 | `bg-cream` | `#F3F8FF` — Soft Blue Gray |
+| 카드 · 입력창 · 모달 배경 | `bg-offwhite` | `#F8F9FA` — Surface White |
+| Primary CTA 배경 | `bg-primary` | `#4D8DFF` — Soft Blue |
+| Primary CTA 텍스트 | `text-primary` | `#4D8DFF` |
+| Accent (태그·뱃지) | `text-accent` / `bg-tag` | `#FF8E7E` / `#FFF3F0` |
+| 주요 텍스트 | `text-charcoal` | `#172033` |
+| 보조 텍스트 | `text-muted` | `#6B7280` |
+| 기본 테두리 | `border-border` | `#E4EDF9` |
+| 포커스·인터랙티브 테두리 | `border-border-interactive` | `rgba(77,141,255,0.4)` |
+| 표면 hover 배경 | `bg-surface-hover` | `rgba(77,141,255,0.06)` |
+| 표면 subtle 배경 | `bg-surface-subtle` | `rgba(77,141,255,0.03)` |
 
 **절대 금지**: `bg-white`, `text-black`, `border-gray-*`, 임의 `text-[#...]` / `bg-[#...]`
 

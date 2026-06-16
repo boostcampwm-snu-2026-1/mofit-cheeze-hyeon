@@ -7,9 +7,9 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  default: "bg-charcoal text-offwhite",
-  muted: "bg-[rgba(28,28,28,0.06)] text-muted",
-  outline: "bg-transparent text-charcoal border border-border-interactive",
+  default: "bg-primary text-offwhite",
+  muted: "bg-surface-hover text-primary",
+  outline: "bg-transparent text-charcoal border border-border",
 };
 
 export function Badge({ variant = "default", className = "", children, ...props }: BadgeProps) {
