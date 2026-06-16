@@ -25,7 +25,7 @@ export function Avatar({ src, name, size = "md", className = "" }: AvatarProps) 
   return (
     <div
       className={[
-        "rounded-pill overflow-hidden bg-[rgba(28,28,28,0.08)] flex items-center justify-center flex-shrink-0",
+        "rounded-pill overflow-hidden bg-surface-hover flex items-center justify-center flex-shrink-0",
         sizeStyles[size],
         className,
       ].join(" ")}

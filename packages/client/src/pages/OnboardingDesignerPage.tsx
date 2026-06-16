@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useVtNavigate } from "@ui";
 import { PageLayout, Button, Input, Body, TagSelector, Switch } from "@ui";
-import { supabase } from "../lib/supabase";
 import { useAuthStore } from "../store/auth";
 
 const SPECIALTY_OPTIONS = [
@@ -46,7 +45,7 @@ const REGIONS = [
 ];
 
 export function OnboardingDesignerPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { user, setDesignerProfile } = useAuthStore();
 
   const [salonName, setSalonName] = useState("");
@@ -57,9 +56,8 @@ export function OnboardingDesignerPage() {
   const [allowFaceExposure, setAllowFaceExposure] = useState(false);
   const [bio, setBio] = useState("");
   const [error, setError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!user) return;
 
@@ -73,26 +71,6 @@ export function OnboardingDesignerPage() {
     }
 
     setError("");
-    setSubmitting(true);
-
-    const { error: dbError } = await supabase
-      .from("designer_profiles")
-      .upsert({
-        user_id: user.id,
-        salon_name: salonName || null,
-        region,
-        career,
-        specialties,
-        allow_content_usage: allowContentUsage,
-        allow_face_exposure: allowFaceExposure,
-        bio: bio || null,
-      });
-
-    if (dbError) {
-      setError("프로필 저장 중 오류가 발생했습니다.");
-      setSubmitting(false);
-      return;
-    }
 
     setDesignerProfile({
       userId: user.id,
@@ -228,9 +206,8 @@ export function OnboardingDesignerPage() {
           variant="primary"
           size="lg"
           className="w-full mt-8"
-          disabled={submitting}
         >
-          {submitting ? "저장 중…" : "완료"}
+          완료
         </Button>
 
         <button

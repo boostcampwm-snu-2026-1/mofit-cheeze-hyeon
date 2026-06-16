@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { PageLayout, Input, Button, Body } from "@ui";
+import { useVtNavigate } from "@ui";
+import { PageLayout, PageHeader, Input, Button, Body } from "@ui";
 import { supabase } from "../lib/supabase";
 
 export function ForgotPasswordPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
@@ -31,16 +31,12 @@ export function ForgotPasswordPage() {
   }
 
   return (
-    <PageLayout fullWidth className="flex items-center justify-center min-h-screen p-0 py-0">
-      <div className="w-full max-w-sm mx-auto px-6 py-16 flex flex-col">
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="text-sm font-sans text-muted hover:text-charcoal transition-colors mb-10 w-fit"
-        >
-          ← 뒤로
-        </button>
-
+    <PageLayout
+      fullWidth
+      className="flex items-center justify-center p-0 py-0"
+      header={<PageHeader onBack={() => navigate(-1)} />}
+    >
+      <div className="w-full max-w-sm mx-auto px-6 py-10 flex flex-col">
         <div className="mb-8">
           <p className="font-sans font-semibold text-[1.75rem] leading-tight tracking-[-0.6px] text-charcoal">
             비밀번호 재설정

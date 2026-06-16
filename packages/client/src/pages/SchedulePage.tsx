@@ -1,42 +1,71 @@
-import { PageLayout, Card, CardBody, Avatar, Badge, BottomNav, Caption, Divider } from "@ui";
+import { PageLayout, PageHeader, Card, CardBody, Avatar, Badge, BottomNav, Caption, Divider } from "@ui";
 
-const SCHEDULE = [
-  {
-    date: "오늘, 6월 1일",
-    items: [
-      { id: "1", time: "14:00", name: "김소연", desc: "레이어드 커트 시술", status: "확정" },
-      { id: "2", time: "17:30", name: "정하늘", desc: "볼륨 펌 상담 · 예약", status: "확정" },
-    ],
-  },
-  {
-    date: "6월 5일 목요일",
-    items: [
-      { id: "3", time: "10:00", name: "이미래", desc: "웨이브 펌 (포트폴리오 촬영)", status: "대기중" },
-    ],
-  },
-  {
-    date: "6월 12일 목요일",
-    items: [
-      { id: "4", time: "13:00", name: "박지현", desc: "애쉬 브라운 염색", status: "확정" },
-    ],
-  },
-];
+const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
+
+function addDays(d: Date, n: number) {
+  const r = new Date(d);
+  r.setDate(d.getDate() + n);
+  return r;
+}
+
+function fmtDate(d: Date, prefix?: string) {
+  const m = d.getMonth() + 1;
+  const day = d.getDate();
+  const wd = WEEKDAYS[d.getDay()];
+  return prefix ?? `${m}월 ${day}일 ${wd}요일`;
+}
+
+function buildSchedule() {
+  const today = new Date();
+  const d1 = addDays(today, 5);
+  const d2 = addDays(today, 12);
+
+  return [
+    {
+      date: `오늘, ${today.getMonth() + 1}월 ${today.getDate()}일 ${WEEKDAYS[today.getDay()]}요일`,
+      items: [
+        { id: "s1", time: "14:00", name: "강민서", desc: "미디엄 레이어드", status: "확정" },
+        { id: "s2", time: "17:30", name: "이수진", desc: "레이어드 커트 + 스타일링", status: "확정" },
+      ],
+    },
+    {
+      date: fmtDate(d1),
+      items: [
+        { id: "s3", time: "11:00", name: "최예린", desc: "내추럴 단발 커트", status: "대기중" },
+      ],
+    },
+    {
+      date: fmtDate(d2),
+      items: [
+        { id: "s4", time: "14:00", name: "김예나", desc: "애쉬 그레이 탈색", status: "확정" },
+        { id: "s5", time: "16:30", name: "윤지원", desc: "내추럴 브라운 톤다운", status: "확정" },
+      ],
+    },
+  ];
+}
 
 export function SchedulePage() {
+  const schedule = buildSchedule();
+  const today = new Date();
+
   return (
     <PageLayout
       fullWidth
       className="p-0 py-0"
       header={
-        <div className="px-5 py-4 flex items-center justify-between">
-          <p className="font-sans font-semibold text-base text-charcoal">스케줄</p>
-          <p className="font-sans text-sm text-muted">2026년 6월</p>
-        </div>
+        <PageHeader
+          title="스케줄"
+          right={
+            <p className="font-sans text-sm text-muted">
+              {today.getFullYear()}년 {today.getMonth() + 1}월
+            </p>
+          }
+        />
       }
       footer={<BottomNav />}
     >
       <div className="max-w-[430px] mx-auto px-5 pt-4 pb-6 flex flex-col gap-6">
-        {SCHEDULE.map((group) => (
+        {schedule.map((group) => (
           <div key={group.date}>
             <p className="font-sans font-semibold text-xs text-muted mb-3">{group.date}</p>
             <div className="flex flex-col gap-2">

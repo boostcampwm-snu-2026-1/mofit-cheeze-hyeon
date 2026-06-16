@@ -10,13 +10,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-charcoal text-offwhite rounded-[6px] shadow-btn-primary active:opacity-80 focus:shadow-focus",
+    "bg-primary text-offwhite rounded-card active:opacity-80 focus:shadow-focus",
   ghost:
-    "bg-transparent text-charcoal rounded-[6px] border border-border-interactive active:opacity-80 focus:shadow-focus",
+    "bg-transparent text-charcoal rounded-card border border-border hover:border-border-interactive active:opacity-80 focus:shadow-focus",
   cream:
-    "bg-cream text-charcoal rounded-[6px] active:opacity-80 focus:shadow-focus",
+    "bg-cream text-charcoal rounded-card active:opacity-80 focus:shadow-focus",
   pill:
-    "bg-cream text-charcoal rounded-pill shadow-btn-primary opacity-50 hover:opacity-80 active:opacity-80",
+    "bg-cream text-charcoal rounded-pill hover:opacity-80 active:opacity-80",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

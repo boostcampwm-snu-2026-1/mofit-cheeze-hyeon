@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { PageLayout, Input, Button, Caption, Divider } from "@ui";
+import { VtLink, useVtNavigate } from "@ui";
+import { PageLayout, PageHeader, Input, Button, Caption, Divider } from "@ui";
 import { supabase } from "../lib/supabase";
 
 type Role = "model" | "designer";
 
 export function SignupPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const [role, setRole] = useState<Role>("model");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -60,19 +60,15 @@ export function SignupPage() {
   }
 
   return (
-    <PageLayout fullWidth className="p-0 py-0">
+    <PageLayout
+      fullWidth
+      className="p-0 py-0"
+      header={<PageHeader onBack={() => navigate(-1)} />}
+    >
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm mx-auto px-6 py-12 flex flex-col"
+        className="w-full max-w-sm mx-auto px-6 py-8 flex flex-col"
       >
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="text-sm font-sans text-muted hover:text-charcoal transition-colors mb-10 w-fit"
-        >
-          ← 뒤로
-        </button>
-
         <div className="mb-8">
           <p className="font-sans font-semibold text-[1.75rem] leading-tight tracking-[-0.6px] text-charcoal">
             계정 만들기
@@ -145,25 +141,17 @@ export function SignupPage() {
         <div className="mt-4 text-center">
           <Caption>
             이미 계정이 있으신가요?{" "}
-            <Link
+            <VtLink
               to="/login"
               className="text-charcoal underline underline-offset-2"
             >
               로그인
-            </Link>
+            </VtLink>
           </Caption>
         </div>
 
         <p className="font-sans text-xs text-muted text-center mt-6 leading-relaxed">
-          가입하면{" "}
-          <span className="text-charcoal underline underline-offset-1 cursor-pointer">
-            이용약관
-          </span>{" "}
-          및{" "}
-          <span className="text-charcoal underline underline-offset-1 cursor-pointer">
-            개인정보처리방침
-          </span>
-          에 동의하는 것으로 간주됩니다.
+          가입하면 이용약관 및 개인정보처리방침에 동의하는 것으로 간주됩니다.
         </p>
       </form>
     </PageLayout>
