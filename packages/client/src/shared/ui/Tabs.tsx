@@ -23,17 +23,17 @@ export function Tabs({ tabs, active, onChange, className = "" }: TabsProps) {
             onClick={() => onChange(tab.id)}
             className={[
               "flex-1 py-3 font-sans text-sm font-medium transition-colors relative",
-              isActive ? "text-charcoal" : "text-muted hover:text-charcoal",
+              isActive ? "text-primary" : "text-muted hover:text-charcoal",
             ].join(" ")}
           >
             {tab.label}
             {tab.count !== undefined && tab.count > 0 && (
-              <span className={`ml-1.5 text-xs ${isActive ? "text-charcoal" : "text-muted"}`}>
+              <span className={`ml-1.5 text-xs ${isActive ? "text-primary" : "text-muted"}`}>
                 {tab.count}
               </span>
             )}
             {isActive && (
-              <span className="absolute bottom-0 inset-x-0 h-0.5 bg-charcoal" />
+              <span className="absolute bottom-0 inset-x-0 h-0.5 bg-primary" />
             )}
           </button>
         );
