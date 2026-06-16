@@ -4,7 +4,6 @@ import { MemoryRouter } from 'react-router-dom'
 import { LoginPage } from './LoginPage'
 import { supabase } from '../lib/supabase'
 import { loadUserSession } from '../lib/AuthProvider'
-import { useAuthStore } from '../store/auth'
 
 // vi.hoisted: vi.mock 팩토리보다 먼저 실행되어야 하는 변수 선언
 const mockNavigate = vi.hoisted(() => vi.fn())
@@ -76,7 +75,7 @@ describe('LoginPage', () => {
     vi.mocked(supabase.auth.signInWithPassword).mockResolvedValue({
       data: { user: { id: 'user-1' } as never, session: null },
       error: null,
-    })
+    } as never)
     vi.mocked(loadUserSession).mockResolvedValue(undefined)
     mockGetState.mockReturnValue({
       user: { id: 'user-1', role: 'model' },
@@ -98,7 +97,7 @@ describe('LoginPage', () => {
     vi.mocked(supabase.auth.signInWithPassword).mockResolvedValue({
       data: { user: { id: 'user-2' } as never, session: null },
       error: null,
-    })
+    } as never)
     vi.mocked(loadUserSession).mockResolvedValue(undefined)
     mockGetState.mockReturnValue({
       user: { id: 'user-2', role: 'designer' },
