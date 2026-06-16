@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { VtLink, useVtNavigate } from "@ui";
 import { PageLayout, Input, Button, Caption } from "@ui";
 import { supabase } from "../lib/supabase";
 import { loadUserSession } from "../lib/AuthProvider";
 import { useAuthStore } from "../store/auth";
 
 export function LoginPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { setLoading } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -103,23 +103,23 @@ export function LoginPage() {
         </Button>
 
         <div className="mt-3 text-center">
-          <Link
+          <VtLink
             to="/forgot-password"
             className="font-sans text-xs text-muted hover:text-charcoal underline underline-offset-2"
           >
             비밀번호 재설정
-          </Link>
+          </VtLink>
         </div>
 
         <div className="mt-4 text-center">
           <Caption>
             계정이 없으신가요?{" "}
-            <Link
+            <VtLink
               to="/signup"
               className="text-charcoal underline underline-offset-2"
             >
               회원가입
-            </Link>
+            </VtLink>
           </Caption>
         </div>
       </form>

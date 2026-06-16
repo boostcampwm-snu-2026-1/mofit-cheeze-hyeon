@@ -1,8 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useVtNavigate } from "@ui";
 import { PageLayout, Button, Body } from "@ui";
 
 export function SignupVerifyPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const email = (useLocation().state as { email?: string })?.email ?? "";
 
   return (
