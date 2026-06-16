@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useVtNavigate } from "@ui";
 import {
   PageLayout,
+  PageHeader,
   Input,
   Button,
   Switch,
@@ -12,7 +14,7 @@ import { supabase } from "../lib/supabase";
 import { useAuthStore } from "../store/auth";
 
 export function PortfolioEditPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { id } = useParams<{ id?: string }>();
   const { user } = useAuthStore();
   const isNew = !id;
@@ -177,8 +179,12 @@ export function PortfolioEditPage() {
 
   if (loading) {
     return (
-      <PageLayout fullWidth className="p-0 py-0">
-        <div className="flex items-center justify-center min-h-screen">
+      <PageLayout
+        fullWidth
+        className="p-0 py-0"
+        header={<PageHeader title={isNew ? "포트폴리오 추가" : "포트폴리오 편집"} onBack={() => navigate(-1)} />}
+      >
+        <div className="flex items-center justify-center min-h-[60vh]">
           <p className="font-sans text-sm text-muted">불러오는 중…</p>
         </div>
       </PageLayout>
@@ -186,24 +192,15 @@ export function PortfolioEditPage() {
   }
 
   return (
-    <PageLayout fullWidth className="p-0 py-0">
+    <PageLayout
+      fullWidth
+      className="p-0 py-0"
+      header={<PageHeader title={isNew ? "포트폴리오 추가" : "포트폴리오 편집"} onBack={() => navigate(-1)} />}
+    >
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-[430px] mx-auto px-5 py-6 flex flex-col"
       >
-        <div className="flex items-center gap-3 mb-8">
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="font-sans text-sm text-muted hover:text-charcoal transition-colors"
-          >
-            ← 뒤로
-          </button>
-          <p className="font-sans font-semibold text-base text-charcoal">
-            {isNew ? "포트폴리오 추가" : "포트폴리오 편집"}
-          </p>
-        </div>
-
         <div className="flex flex-col gap-6">
           <Input
             label="제목"

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useVtNavigate } from "@ui";
 import { PageLayout, Button, Body, TagSelector, Switch } from "@ui";
-import { supabase } from "../lib/supabase";
 import { useAuthStore } from "../store/auth";
 
 const STYLE_OPTIONS = [
@@ -28,7 +27,7 @@ const GENDERS = [
 ] as const;
 
 export function OnboardingModelPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { user, setModelProfile } = useAuthStore();
 
   const [gender, setGender] = useState<"female" | "male" | "other" | "">(
@@ -38,29 +37,10 @@ export function OnboardingModelPage() {
   const [preferredStyles, setPreferredStyles] = useState<string[]>([]);
   const [hasTreatmentExperience, setHasTreatmentExperience] = useState(false);
   const [bio, setBio] = useState("");
-  const [error, setError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!user) return;
-    setError("");
-    setSubmitting(true);
-
-    const { error: dbError } = await supabase.from("model_profiles").upsert({
-      user_id: user.id,
-      gender: gender || null,
-      age_group: ageGroup || null,
-      preferred_styles: preferredStyles,
-      has_treatment_experience: hasTreatmentExperience,
-      bio: bio || null,
-    });
-
-    if (dbError) {
-      setError("프로필 저장 중 오류가 발생했습니다.");
-      setSubmitting(false);
-      return;
-    }
 
     setModelProfile({
       userId: user.id,
@@ -170,17 +150,12 @@ export function OnboardingModelPage() {
           </div>
         </div>
 
-        {error && (
-          <p className="mt-4 font-sans text-xs text-red-500">{error}</p>
-        )}
-
         <Button
           variant="primary"
           size="lg"
           className="w-full mt-8"
-          disabled={submitting}
         >
-          {submitting ? "저장 중…" : "완료"}
+          완료
         </Button>
 
         <button
