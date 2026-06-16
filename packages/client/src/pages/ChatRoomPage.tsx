@@ -1,26 +1,26 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { PageLayout, Avatar, Input, Button } from "@ui";
-
-type Message = {
-  id: number;
-  sender: "me" | "other";
-  content: string;
-  time: string;
-};
-
-const INITIAL_MESSAGES: Message[] = [
-  { id: 1, sender: "other", content: "안녕하세요! 매칭 요청 감사해요 😊", time: "14:30" },
-  { id: 2, sender: "me", content: "네, 포트폴리오 보고 연락드렸어요!", time: "14:31" },
-  { id: 3, sender: "other", content: "어떤 시술을 원하시는지 알려주세요.", time: "14:32" },
-  { id: 4, sender: "me", content: "레이어드 커트에 애쉬 브라운 염색을 생각하고 있어요.", time: "14:33" },
-];
+import { useParams } from "react-router-dom";
+import { useVtNavigate } from "@ui";
+import { PageLayout, PageHeader, Avatar, Input, Button, Caption } from "@ui";
+import { useAuthStore } from "../store/auth";
+import { useMatchStore } from "../store/matchStore";
+import { useChatStore } from "../store/chatStore";
 
 const OTHER_NAME = "김소연";
 
 export function ChatRoomPage() {
-  const navigate = useNavigate();
-  const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
+  const navigate = useVtNavigate();
+  const { roomId } = useParams<{ roomId: string }>();
+  const { user } = useAuthStore();
+  const { modelMatchings, designerMatchings } = useMatchStore();
+  const { getMessages, addMessage } = useChatStore();
+  const isDesigner = user?.role === "designer";
+  const matching = (isDesigner ? designerMatchings : modelMatchings).find((m) => m.id === roomId);
+  const counterpartName = matching
+    ? isDesigner ? matching.modelName : matching.designerName
+    : OTHER_NAME;
+
+  const messages = getMessages(roomId ?? "");
   const [draft, setDraft] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -30,16 +30,13 @@ export function ChatRoomPage() {
 
   const send = () => {
     const text = draft.trim();
-    if (!text) return;
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        sender: "me",
-        content: text,
-        time: new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }),
-      },
-    ]);
+    if (!text || !roomId) return;
+    addMessage(roomId, {
+      id: Date.now(),
+      sender: "me",
+      content: text,
+      time: new Date().toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }),
+    });
     setDraft("");
   };
 
@@ -48,21 +45,26 @@ export function ChatRoomPage() {
       fullWidth
       className="p-0 py-0 flex flex-col"
       header={
-        <div className="flex items-center gap-3 px-5 py-3">
-          <button
-            onClick={() => navigate(-1)}
-            className="text-sm font-sans text-muted hover:text-charcoal transition-colors"
-          >
-            ←
-          </button>
-          <Avatar name={OTHER_NAME} size="sm" />
-          <p className="font-sans font-semibold text-sm text-charcoal">{OTHER_NAME}</p>
-        </div>
+        <PageHeader
+          onBack={() => navigate(-1)}
+          title={
+            <div className="flex items-center gap-2">
+              <Avatar name={counterpartName} size="sm" />
+              <p className="font-sans font-semibold text-sm text-charcoal truncate">
+                {counterpartName}
+              </p>
+            </div>
+          }
+        />
       }
     >
-      <div className="max-w-[430px] mx-auto w-full flex flex-col h-full">
+      <div className="max-w-[430px] mx-auto w-full flex-1 flex flex-col min-h-0">
         {/* Messages */}
-        <div className="flex-1 px-4 py-4 flex flex-col gap-3 overflow-y-auto">
+        <div className="flex-1 min-h-0 px-4 py-4 flex flex-col gap-3 overflow-y-auto">
+          <div className="flex justify-center mb-2">
+            <Caption className="text-muted">매칭이 수락되었어요 · 일정을 조율해보세요</Caption>
+          </div>
+
           {messages.map((msg) => (
             <div
               key={msg.id}
@@ -71,7 +73,7 @@ export function ChatRoomPage() {
               )}
             >
               {msg.sender === "other" && (
-                <Avatar name={OTHER_NAME} size="sm" className="flex-shrink-0 mt-0.5" />
+                <Avatar name={counterpartName} size="sm" className="flex-shrink-0 mt-0.5" />
               )}
               <div
                 className={[
@@ -97,14 +99,28 @@ export function ChatRoomPage() {
         </div>
 
         {/* Input area */}
-        <div className="px-4 py-3 border-t border-border flex gap-2 bg-cream">
-          <Input
-            placeholder="메시지 입력..."
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && send()}
-            className="flex-1"
-          />
+        <div className="px-4 py-3 border-t border-border flex items-center gap-2 bg-cream">
+          <button
+            type="button"
+            disabled
+            title="사진 첨부는 준비 중이에요"
+            className="flex-shrink-0 w-11 h-11 rounded-card border border-border text-muted flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <circle cx="8.5" cy="10" r="1.5" />
+              <path d="M21 16l-5-5-4 4-2-2-5 5" />
+            </svg>
+          </button>
+          <div className="flex-1">
+            <Input
+              placeholder="메시지 입력..."
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && send()}
+              className="w-full"
+            />
+          </div>
           <Button variant="primary" size="md" onClick={send}>
             전송
           </Button>
