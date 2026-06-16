@@ -3,24 +3,6 @@ import { supabase } from "./supabase";
 import { useAuthStore } from "../store/auth";
 import type { User, ModelProfile, DesignerProfile } from "@mofit/shared";
 
-const IS_MOCK = import.meta.env.VITE_USE_MOCK === "true";
-
-const MOCK_USER: User = {
-  id: "mock-user-id",
-  role: "model",
-  name: "홍길동",
-  createdAt: new Date().toISOString(),
-};
-
-const MOCK_MODEL_PROFILE: ModelProfile = {
-  userId: "mock-user-id",
-  gender: "female",
-  ageGroup: "20대 초반",
-  preferredStyles: ["내추럴", "웨이브", "레이어드"],
-  hasTreatmentExperience: true,
-  bio: "염색·펌 시술 모델로 활동 중입니다. 자연스러운 톤과 레이어드 스타일을 선호해요.",
-};
-
 async function fetchUserRow(id: string): Promise<User | null> {
   const { data } = await supabase
     .from("users")
@@ -94,13 +76,13 @@ export async function loadUserSession(userId: string) {
   setLoading(false);
 }
 
+const IS_MOCK = import.meta.env.VITE_USE_MOCK === "true";
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const { setLoading, clearSession, setUser, setModelProfile } = useAuthStore();
+  const { setLoading, clearSession } = useAuthStore();
 
   useEffect(() => {
     if (IS_MOCK) {
-      setUser(MOCK_USER);
-      setModelProfile(MOCK_MODEL_PROFILE);
       setLoading(false);
       return;
     }
@@ -111,6 +93,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         setLoading(false);
       }
+    }).catch(() => {
+      setLoading(false);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
