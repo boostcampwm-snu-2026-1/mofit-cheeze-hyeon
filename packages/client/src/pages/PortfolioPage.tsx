@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useVtNavigate } from "@ui";
 import {
   PageLayout,
+  PageHeader,
   Button,
   EmptyState,
   Badge,
@@ -23,7 +24,7 @@ interface Portfolio {
 }
 
 export function PortfolioPage() {
-  const navigate = useNavigate();
+  const navigate = useVtNavigate();
   const { user } = useAuthStore();
   const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
   const [loading, setLoading] = useState(true);
@@ -109,26 +110,19 @@ export function PortfolioPage() {
       fullWidth
       className="p-0 py-0"
       header={
-        <div className="flex items-center justify-between px-5 py-4">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => navigate(-1)}
-              className="font-sans text-sm text-muted hover:text-charcoal transition-colors"
+        <PageHeader
+          title="포트폴리오"
+          onBack={() => navigate(-1)}
+          right={
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => navigate("/portfolio/new")}
             >
-              ←
-            </button>
-            <p className="font-sans font-semibold text-base text-charcoal">
-              포트폴리오
-            </p>
-          </div>
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={() => navigate("/portfolio/new")}
-          >
-            + 추가
-          </Button>
-        </div>
+              + 추가
+            </Button>
+          }
+        />
       }
       footer={<BottomNav />}
     >
