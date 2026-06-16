@@ -20,22 +20,29 @@ export function PageLayout({
   return (
     <div className="min-h-screen bg-cream text-charcoal font-sans flex flex-col">
       {header && (
-        <header className="sticky top-0 z-20 bg-cream border-b border-border flex-shrink-0">
-          {header}
+        <header
+          className="sticky top-0 z-20 bg-cream border-b border-border flex-shrink-0"
+          style={{ paddingTop: "env(safe-area-inset-top)" }}
+        >
+          {fullWidth ? <div className="max-w-[430px] mx-auto w-full">{header}</div> : header}
         </header>
       )}
       <main
         className={[
           "flex-1",
           fullWidth ? "w-full" : "max-w-[1200px] mx-auto px-6",
-          "py-8",
+          "pb-8",
           className,
         ].join(" ")}
+        style={!footer ? { paddingBottom: "env(safe-area-inset-bottom)" } : undefined}
       >
         {children}
       </main>
       {footer && (
-        <footer className="sticky bottom-0 z-20 bg-cream border-t border-border flex-shrink-0">
+        <footer
+          className="sticky bottom-0 z-20 bg-cream border-t border-border flex-shrink-0"
+          style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        >
           {footer}
         </footer>
       )}
